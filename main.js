@@ -3,21 +3,33 @@ const keyboardDiv = document.querySelector(".keyboard");
 const wordDisplay = document.querySelector(".word-display");
 const guessesText = document.querySelector(".guesses-text");
 const gameModal = document.querySelector(".game-modal");
+const playAgainButton = document.querySelector(".play-again");
 
 let currentWord,
   correctLetters = [],
   wrongGuessCount = 0;
 const maxGuesses = 6;
 
-const getRandomWord = () => {
-  const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
-  console.log(word);
-  currentWord = word;
-  document.querySelector(".hint-text b").innerText = hint;
-  wordDisplay.innerHTML = word
+const resetGame = () => {
+  correctLetters = [];
+  wrongGuessCount = 0;
+  hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
+  guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+  keyboardDiv
+    .querySelectorAll("button")
+    .forEach((btn) => (btn.disabled = false));
+  wordDisplay.innerHTML = currentWord
     .split("")
     .map(() => `<li class="letter"></li>`)
     .join("");
+  gameModal.classList.remove("show");
+};
+
+const getRandomWord = () => {
+  const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
+  currentWord = word;
+  document.querySelector(".hint-text b").innerText = hint;
+  resetGame();
 };
 
 const gameOver = (isVictory) => {
@@ -70,3 +82,4 @@ for (let i = 97; i < 122; i++) {
 }
 
 getRandomWord();
+playAgainButton.addEventListener("click", getRandomWord);

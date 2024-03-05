@@ -2,6 +2,7 @@ const hangmanImage = document.querySelector(".hangman-box img");
 const keyboardDiv = document.querySelector(".keyboard");
 const wordDisplay = document.querySelector(".word-display");
 const guessesText = document.querySelector(".guesses-text");
+const gameModal = document.querySelector(".game-modal");
 
 let currentWord,
   correctLetters = [],
@@ -17,6 +18,24 @@ const getRandomWord = () => {
     .split("")
     .map(() => `<li class="letter"></li>`)
     .join("");
+};
+
+const gameOver = (isVictory) => {
+  setTimeout(() => {
+    const modalText = isVictory
+      ? `You found the word:`
+      : `The correct word was:`;
+    gameModal.querySelector("img").src = `images/${
+      isVictory ? "victory" : "lost"
+    }.gif`;
+    gameModal.querySelector("h4").innerText = `${
+      isVictory ? "Congrats!" : "Game Over!"
+    }`;
+    gameModal.querySelector(
+      "p"
+    ).innerHTML = `${modalText} <b>${currentWord}</b>`;
+    gameModal.classList.add("show");
+  }, 300);
 };
 
 const initGame = (button, clickedLetter) => {

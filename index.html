@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="word-list.js" defer></script>
+    <script src="main.js" defer></script>
     <title>Hangman Game</title>
   </head>
   <body>
@@ -21,23 +23,10 @@
         <h1>Hangman Game</h1>
       </div>
       <div class="game-box">
-        <ul class="word-display">
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter guessed"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-          <li class="letter"></li>
-        </ul>
+        <ul class="word-display"></ul>
         <h4 class="hint-text">
           Hint:
-          <b
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-            mollitia illum itaque dolore qui beatae molestiae, ex dicta, eius,
-            eveniet perferendis nisi quo unde ipsum veritatis tempore doloremque
-            in quia!</b
-          >
+          <b> quo unde ipsum veritatis tempore doloremque in quia!</b>
         </h4>
         <h4 class="guesses-text">
           Incorrect guesses:
@@ -46,6 +35,5 @@
         <div class="keyboard"></div>
       </div>
     </div>
-    <script src="main.js" defer></script>
   </body>
 </html>
